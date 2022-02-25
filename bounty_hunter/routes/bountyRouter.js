@@ -7,9 +7,9 @@ const bounties = [
     {
         firstName: 'Crazy',
         lastName: 'Killer',
-        isLiving: true,
+        livingStatus: true,
         bountyAmount: 100,
-        type: 'Sith',
+        moralStatus: 'Sith',
         _id: uuidv4()
     },
     {
