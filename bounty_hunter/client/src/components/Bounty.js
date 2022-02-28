@@ -8,19 +8,17 @@ function Bounty(props){
         <div className="bounty">
             { !editToggle ?
                 <>
-                    <h1>First Name: {firstName}</h1>
-                    <h1>Last Name: {lastName}</h1>
-                    <p>Bounty Amount: {bountyAmount}</p>
-                    <p>Alive or Dead? {isAlive}</p>
-                    <p>Jedi or Sith? {isJedi}</p>
+                    <h1 className="bountyName">{`Name: ${firstName} ${lastName}: `}</h1>
+                    <p className="bountyReward">{` They are a ${isJedi} and the bounty amount is $${bountyAmount}, ${isAlive}. `}</p>
+
                     <button 
-                        // className="deleteButton"
+                        className="editButtons"
                         onClick={() => props.deleteBounty(_id)}
                     >
                         Delete
                     </button>
                     <button
-                        // className="editButton"
+                        className="editButtons"
                         onClick={() => setEditToggle(prevToggle => !prevToggle)}
                     >
                         Edit
@@ -39,6 +37,7 @@ function Bounty(props){
                         submit={props.editBounty}
                     />
                     <button
+                        className="closeButton"
                         onClick={() => setEditToggle(prevToggle => !prevToggle)}
                     >
                         Close

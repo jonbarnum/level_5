@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import BountyForm from "./BountyForm";
 import axios from 'axios'
 import Bounty from "./Bounty";
+import BountyHeader from "./BountyHeader";
 
 function App(){
     const [bounties, setBounties] = useState([])
@@ -33,6 +34,7 @@ function App(){
         .then(response => {
             setBounties(prevBounty => prevBounty.map(bounty => bounty._id !== bountyId ? bounty : response.data))
         })
+        .catch(error => console.log(error))
     }
 
     useEffect(() => {
@@ -41,6 +43,7 @@ function App(){
 
     return(
         <div>
+            <BountyHeader />
             <BountyForm 
                 submit={addBounty}
                 buttonText='Add Bounty'
@@ -48,7 +51,7 @@ function App(){
             {bounties.map(bounty => 
                 <Bounty 
                     {...bounty}
-                    key={bounty.title}
+                    key={bounty._id}
                     deleteBounty={deleteBounty}
                     editBounty={editBounty}
                 />)

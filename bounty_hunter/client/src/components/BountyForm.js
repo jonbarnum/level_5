@@ -10,6 +10,7 @@ function BountyForm(props){
         isAlive: props.isAlive || '',
         isJedi: props.isJedi || ''
     }
+
     const [input, setInput] = useState(initialInputs)
 
     function handleChange(event){
@@ -44,7 +45,7 @@ function BountyForm(props){
                 className="bountyFormInput"
             />
             <input
-                type='number'
+                type='text'
                 name="bountyAmount"
                 value={input.bountyAmount}
                 onChange={handleChange}
@@ -70,7 +71,7 @@ function BountyForm(props){
                 required
                 className="bountyFormInput"
             />
-            <button>{props.buttonText}</button>
+            <button className="editButtons">{props.buttonText}</button>
         </form>
     )
 }

@@ -1,16 +1,43 @@
 *{
-    box-sizing: border-box;
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
+    background-color: #6D80A6;
+    background-image: url('');
 }
 
 .bountyForm{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: left;
     margin-top: 10px;
 }
 
 .bountyFormInput{
     padding: 15px;
+    background-color: #BF80A9;
+
+}
+
+.bounty{
+    display: flex;
+    justify-content: left;
+    margin-top: 10px;
+}
+
+.bountyName{
+    margin: 0;
+}
+
+.bountyReward{
+    margin-top: 15px;
+}
+
+.editButtons{
+    padding: 0;
+    height: 50px;
+    background-color: #BF80A9;
+}
+
+.closeButton{
+    padding: 0;
+    height: 40;
+    margin-top: 10px;
+    background-color: #BF80A9;
 }
