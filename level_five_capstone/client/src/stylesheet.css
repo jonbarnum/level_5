@@ -1,0 +1,43 @@
+body{
+    background: url('https://cdn.pixabay.com/photo/2018/01/15/21/50/concert-3084876__340.jpg') no-repeat center center fixed; 
+    background-size: cover;
+}
+
+.headerDiv{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.headerLink{
+    color: #04BF9D;
+    text-decoration: none;
+}
+
+.bandSearchDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.bandSearchLabel{
+    font-size: 26px;
+}
+
+.bandSeachSelector{
+    width: 75px;
+    height: 32px;
+}
+
+.bandSearchInput{
+    width: 200px;
+    height: 26px;
+    font-size: 16px;
+}
+
+.searchButton{
+    height: 32px;
+}
+
+.footerQuote{
+    color: #F29E6D;
+    text-align: center;
+}
