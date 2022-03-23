@@ -9,7 +9,12 @@ const bandSchema = new Schema({
     },
     genre: {
         type: String,
-        required: true
+    },
+    url: {
+        type: String
+    },
+    img: {
+        type: String
     }
 })
 

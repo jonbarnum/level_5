@@ -19,3 +19,7 @@ app.listen(8000, () => {
     console.log('server running on port 8000')
 })
 
+// http://192.168.12.241:8000 on local network ip address
+// http://0.0.0.0:8000 local network maps to this
+// http://127.0.0.1:8000 local host
+// http://localhost:8000 host file

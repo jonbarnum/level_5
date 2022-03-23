@@ -8,23 +8,39 @@ function ButtonContextProvider(props){
     const [inputData, setInputData] = useState({
         artist: ''
     })
+    const [savedBand, setSavedBand] = useState([])
 
     function handleChange(event){
         event.preventDefault()
         const {name, value} = event.target
-        setInputData(prevData => ({...prevData, [name]: value}))//do i need this?
+        setInputData(prevData => ({...prevData, [name]: value}))
     }
 
     function handleSearch(event){
         event.preventDefault()
-        axios.get(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${inputData.artist}&api_key=cb41d576aa71567c76b75feab99d7dcd&format=json`)
+        axios.get(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${inputData.artist}&api_key=cb41d576aa71567c76b75feab99d7dcd&format=json&limit=10`)
         .then(response => {
-            setBandInfo(response.data)
-            //response.data.res
-            console.log(response.data)
+            setBandInfo(response.data.results.artistmatches.artist)
+            console.log(response.data.results.artistmatches.artist)
         })
         .catch(error => console.log(error))
-        //setInputData back to empty string after search
+        setInputData({
+            artist: ''
+        })
+    }
+
+    function addBand(newBand){
+        axios.post('http://localhost:8000', newBand)
+        .then(response => {
+            setSavedBand(...prevBands => [...prevBands, response.data])
+        })
+        .catch(error => console.log(error))
+    }
+
+    function getBands(){
+        axios.get('http://localhost:8000')
+        .then(response => setSavedBand(response.data))
+        .catch(error => console.log(error))
     }
     
     return(
@@ -32,7 +48,8 @@ function ButtonContextProvider(props){
                 handleSearch,
                 bandInfo,
                 handleChange,
-                inputData
+                inputData,
+
             }}
         >
             {props.children}

@@ -37,6 +37,27 @@ body{
     height: 32px;
 }
 
+.bandsHeaderTitle{
+    text-align: center;
+    color: #F2CD88;
+    text-decoration: underline;
+}
+
+.bandListDiv{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.bandName{
+    color: #3BF4FF;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.bandListeners{
+    color: #3BF4FF;
+}
+
 .footerQuote{
     color: #F29E6D;
     text-align: center;
