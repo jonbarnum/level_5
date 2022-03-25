@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from './App'
 import {BrowserRouter as Router} from 'react-router-dom'
-import {ButtonContextProvider} from './buttonContext'
+import {AppContextProvider} from './appContext'
 
 ReactDOM.render(
-    <ButtonContextProvider>
+    <AppContextProvider>
         <Router>
             <App/>
         </Router> 
-    </ButtonContextProvider>,
+    </AppContextProvider>,
     document.getElementById('root')
 )

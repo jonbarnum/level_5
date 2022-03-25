@@ -1,17 +1,23 @@
 import React, { useContext } from "react";
-import { ButtonContext } from "../buttonContext";
+import { AppContext } from "../appContext";
 import axios from "axios";
 
 function Bands(){
-    const {bandInfo, setSavedBand} = useContext(ButtonContext)
+    const {bandInfo, setSavedBand} = useContext(AppContext)
 
     function addBand(event){
         event.preventDefault()
         let newBand = bandInfo[event.target.parentElement.id]
-        axios.post("http://localhost:8000/bands/", {name: newBand.name, url: newBand.url})
+        axios.post("http://localhost:8000/bands/", 
+            {
+                name: newBand.name, 
+                url: newBand.url, 
+                genre: newBand.genre, 
+                img: newBand.img
+            }
+        )
         .then(response => {
             setSavedBand(prevBands => [...prevBands, response.data])
-            console.log(response.data)
         })
         .catch(error => console.log(error))
     }

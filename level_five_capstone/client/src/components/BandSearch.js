@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { ButtonContext } from "../buttonContext";
+import { AppContext } from "../appContext";
 import Bands from "./Bands";
 
 function BandSearch(){
-    const {handleSearch, inputData, handleChange} = useContext(ButtonContext)
+    const {handleSearch, inputData, handleChange} = useContext(AppContext)
 
 
     return(

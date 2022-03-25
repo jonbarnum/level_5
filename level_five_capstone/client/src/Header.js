@@ -10,13 +10,13 @@ function Header(){
                 </Link> 
             </h1>
             <h1 className="headerTitle">
-                <Link to='FavBands' className="headerLink">
+                <Link to='/FavBands' className="headerLink">
                     Your favorite bands
                 </Link>
             </h1>
             <h1 className="headerTitle">
-                <Link to='/Albums' className="headerLink">
-                    Albums
+                <Link to='/TopTracks' className="headerLink">
+                    Top Tracks
                 </Link>
             </h1>
         </div>

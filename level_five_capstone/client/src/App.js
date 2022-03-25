@@ -3,7 +3,7 @@ import Header from "./Header";
 import { Routes, Route } from "react-router-dom";
 import BandSearch from "./components/BandSearch";
 import FavBands from "./components/FavBands";
-import Albums from "./components/Albums";
+import TopTracks from "./components/TopTracks";
 import Footer from "./Footer";
 import './stylesheet.css'
 
@@ -14,7 +14,7 @@ function App(){
             <Routes>
                 <Route path="/bandSearch" element={<BandSearch />} />
                 <Route path="/favBands" element={<FavBands />} />
-                <Route path="/albums" element={<Albums />} />
+                <Route path="/topTracks" element={<TopTracks />} />
             </Routes>
             <Footer />
         </div>

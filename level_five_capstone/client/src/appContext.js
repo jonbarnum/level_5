@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const ButtonContext = React.createContext()
+const AppContext = React.createContext()
 
-function ButtonContextProvider(props){
+function AppContextProvider(props){
     const [bandInfo, setBandInfo] = useState([])
     const [inputData, setInputData] = useState({
         artist: '',
@@ -12,6 +12,17 @@ function ButtonContextProvider(props){
         img: ''
     })
     const [savedBand, setSavedBand] = useState([])
+    const [bands, setBands] = useState([])
+
+    function getBands(){
+        axios.get('http://localhost:8000/bands/')
+        .then(response => setBands(response.data))
+        .catch(error => console.log(error))
+    }
+
+    useEffect(() => {
+        getBands()
+    }, [])
 
     function handleChange(event){
         event.preventDefault()
@@ -31,33 +42,23 @@ function ButtonContextProvider(props){
         })
     }
 
-    // function addBand(newBand){
-    //     axios.post('http://localhost:8000', newBand)
-    //     .then(response => {
-    //         setSavedBand(...prevBands => [...prevBands, response.data])
-    //     })
-    //     .catch(error => console.log(error))
-    // }
-
-    // function getBands(){
-    //     axios.get('http://localhost:8000')
-    //     .then(response => setSavedBand(response.data))
-    //     .catch(error => console.log(error))
-    // }
     
     return(
-        <ButtonContext.Provider value={{
+        <AppContext.Provider value={{
                 handleSearch,
                 bandInfo,
                 handleChange,
                 inputData,
                 savedBand,
-                setSavedBand
+                setSavedBand,
+                bands,
+                setBands,
+                getBands
             }}
         >
             {props.children}
-        </ButtonContext.Provider>
+        </AppContext.Provider>
     )
 }
 
-export {ButtonContextProvider, ButtonContext}
+export {AppContextProvider, AppContext}
