@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 //Band Blueprint
 const bandSchema = new Schema({
-    artist: {
+    name: {
         type: String,
         required: true
     },

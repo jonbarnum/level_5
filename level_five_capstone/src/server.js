@@ -1,10 +1,12 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 
 app.use(express.json())
 app.use(morgan('dev'))
+app.use(cors())
 
 mongoose.connect("mongodb://localhost:27017/test-db", () => console.log('connected to database'))
 
@@ -14,6 +16,13 @@ app.use((err, req, res, next) => {
     console.log(err)
     return res.send({errMsg: err.message})
 })
+
+app.use((req, res, next) => {
+    res.set('Cache-Control', 'no-store')
+    next()
+})
+
+app.set('etag', false)
 
 app.listen(8000, () => {
     console.log('server running on port 8000')

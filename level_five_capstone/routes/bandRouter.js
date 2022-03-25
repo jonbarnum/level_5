@@ -36,6 +36,7 @@ bandRouter.get('/search/genre', (req, res, next) => {
 })
 
 //post one mongoose
+// http://localhost:8000/bands/
 bandRouter.post('/', (req, res, next) => {
     const newBand = new Band(req.body)
     newBand.save((error, savedBand) => {
