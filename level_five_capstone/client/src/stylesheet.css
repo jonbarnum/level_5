@@ -58,6 +58,24 @@ body{
     color: #3BF4FF;
 }
 
+.favBandDiv{
+    margin-bottom: 15px;
+}
+
+.favBandGenre{
+    color: #FACFCE;
+}
+
+.favBandImage{
+    width: 350px;
+    height: 250px;
+}
+
+.artist{
+    color: #FACFCE;
+    font-size: 20px;
+}
+
 .footerQuote{
     color: #F29E6D;
     text-align: center;

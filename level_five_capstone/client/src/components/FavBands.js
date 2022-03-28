@@ -3,13 +3,12 @@ import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../appContext";
 
 
-function BandEditForm(){
-    const {bands, setBands, getBands} = useContext(AppContext)
+function BandEditForm(band){
+    const {bands, getBands} = useContext(AppContext)
     const [previewActive, setPreviewActive] = useState(false)
     const [editInputData, setEditInputData] = useState({
-        genre: '',
-        url: '',
-        img: ''
+        genre: band.genre,
+        img: band.img
     })
 
     function editHandleChange(event){
@@ -17,37 +16,36 @@ function BandEditForm(){
         const {name, value} = event.target
         setEditInputData(prevData => ({...prevData, [name]: value}))
     }
+    
 
     function handleEditBand(event){
         event.preventDefault()
         let bandId = bands[event.target.parentElement.parentElement.id]
         axios.put(`http://localhost:8000/bands/${bandId._id}`, 
             {
-                genre: editInputData.genre, 
-                url: editInputData.url, 
-                img: editInputData.img 
+                genre: editInputData.genre ? editInputData.genre : band.genre, 
+                img: editInputData.img ? editInputData.img : band.img
             }
         )
         .then(response => {
-            setBands(prevBand => prevBand.map(band => band._id !== bandId ? band : response.data))
+            getBands()
         })
         .catch(error => console.log(error))
         setEditInputData({
             genre: '',
-            url: '',
             img: ''
         })
     }
+
 
     function handleDeleteBand(event){
         event.preventDefault()
         let bandId = bands[event.target.parentElement.parentElement.parentElement.id]
         axios.delete(`http://localhost:8000/bands/${bandId._id}`)
-        .then(response => {
-            setBands(prevBand => prevBand.map(band => band._id !== bandId ? band : response.data))
+        .then(() => {
+            getBands()
         })
         .catch(error => console.log(error))
-        // getBands()
     }
 
 
@@ -62,13 +60,6 @@ function BandEditForm(){
                             name='genre'
                             onChange={editHandleChange}
                             placeholder='Genre'
-                        />
-                        <input
-                            type='text'
-                            value={editInputData.url}
-                            name='url'
-                            onChange={editHandleChange}
-                            placeholder='Bands URL'
                         />
                         <input
                             type='text'
@@ -87,18 +78,17 @@ function BandEditForm(){
 
 function FavBands(){
     const {bands, getBands} = useContext(AppContext)
-    const [hasImage, setHasImage] = useState(false)
 
-    // useEffect(() => {
-    //     getBands()
-    // }, [])
+    useEffect(() => {
+        getBands()
+    }, [])
 
     return(
-        <div>
+        <div className="favBands">
             <h1>Your Favorite Bands Are!!!</h1>
             {bands.map((band, index) => {
                 return(
-                    <div key={band.name} id={index}>
+                    <div key={band.name} id={index} className='favBandDiv'>
                         <a
                             href={band.url}
                             rel="noreferrer"
@@ -108,12 +98,16 @@ function FavBands(){
                             {band.name}
                         </a>
                         <div>
-                            {/* <h3>
-                                Genre: {band.genre}
-                            </h3> */}
-                            {/* <img src={hasImage ? '' : `${band.img}`} alt='band' /> */}
+                            {band.genre && 
+                                <h3 className="favBandGenre">
+                                    Genre: {band.genre}
+                                </h3>
+                            }
+                            {band.img &&
+                                <img className="favBandImage" src={`${band.img}`} alt='band' />
+                            }
                         </div>
-                        <BandEditForm />
+                        <BandEditForm band={band}/>
                     </div>
                 )
             })}

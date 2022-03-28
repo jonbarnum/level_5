@@ -11,7 +11,7 @@ function AppContextProvider(props){
         url: '',
         img: ''
     })
-    const [savedBand, setSavedBand] = useState([])
+    // const [savedBand, setSavedBand] = useState([])
     const [bands, setBands] = useState([])
 
     function getBands(){
@@ -49,8 +49,8 @@ function AppContextProvider(props){
                 bandInfo,
                 handleChange,
                 inputData,
-                savedBand,
-                setSavedBand,
+                // savedBand,
+                // setSavedBand,
                 bands,
                 setBands,
                 getBands

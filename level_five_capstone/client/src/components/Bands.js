@@ -3,7 +3,7 @@ import { AppContext } from "../appContext";
 import axios from "axios";
 
 function Bands(){
-    const {bandInfo, setSavedBand} = useContext(AppContext)
+    const {bandInfo} = useContext(AppContext)
 
     function addBand(event){
         event.preventDefault()
@@ -16,9 +16,9 @@ function Bands(){
                 img: newBand.img
             }
         )
-        .then(response => {
-            setSavedBand(prevBands => [...prevBands, response.data])
-        })
+        // .then(response => {
+        //     // setSavedBand(prevBands => [...prevBands, response.data])
+        // })
         .catch(error => console.log(error))
     }
 

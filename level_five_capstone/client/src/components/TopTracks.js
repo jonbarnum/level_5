@@ -33,7 +33,7 @@ function TopTracks(){
                             >
                                 {track.name}
                             </a> 
-                            <h1>
+                            <h1 className="artist">
                                 by {track.artist.name} 
                             </h1>
                         
