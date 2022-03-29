@@ -18,25 +18,27 @@ function TopTracks(){
 
     return(
         <div>
-            <h1>
+            <h1 className="topTrackHeader">
                 Top Tracks
             </h1>
             {topTracks.map(track => {
                 return(
-                    <div key={track.name} className="trackDiv">
-                        <div>
-                            <a
-                                href={track.url}
-                                rel="noreferrer"
-                                target='_blank'
-                                className="bandName"
-                            >
-                                {track.name}
-                            </a> 
-                            <h1 className="artist">
-                                by {track.artist.name} 
-                            </h1>
-                        
+                    <div className="topTracksDiv">
+                        <div key={track.name} className="trackDiv">
+                            <div className="topTrackDiv">
+                                <a
+                                    href={track.url}
+                                    rel="noreferrer"
+                                    target='_blank'
+                                    className="bandName"
+                                >
+                                    {track.name}
+                                </a> 
+                                <h1 className="artist">
+                                    by {track.artist.name} 
+                                </h1>
+                            
+                            </div>
                         </div>
                     </div>
                 )

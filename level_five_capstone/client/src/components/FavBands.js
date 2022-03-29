@@ -50,7 +50,7 @@ function BandEditForm(band){
 
 
     return(
-        <div>
+        <div className="editDiv">
             <button onClick={() => setPreviewActive(!previewActive)}>Edit</button>
                 {previewActive ? (
                     <form onSubmit={handleEditBand}>
@@ -85,29 +85,35 @@ function FavBands(){
 
     return(
         <div className="favBands">
-            <h1>Your Favorite Bands Are!!!</h1>
+            <h1 className="favBandsHeader">Your Favorite Bands Are!!!</h1>
             {bands.map((band, index) => {
                 return(
-                    <div key={band.name} id={index} className='favBandDiv'>
-                        <a
-                            href={band.url}
-                            rel="noreferrer"
-                            target='_blank'
-                            className="bandName"
-                        >
-                            {band.name}
-                        </a>
-                        <div>
-                            {band.genre && 
-                                <h3 className="favBandGenre">
-                                    Genre: {band.genre}
-                                </h3>
-                            }
-                            {band.img &&
-                                <img className="favBandImage" src={`${band.img}`} alt='band' />
-                            }
+                    <div className="vertLineLeft vertLineRight">
+                        <div className="favBandsDiv">
+                            <div key={band.name} id={index} className='favBandDiv'>
+                                <div className="bandNameDiv">
+                                    <a
+                                        href={band.url}
+                                        rel="noreferrer"
+                                        target='_blank'
+                                        className="bandName"
+                                    >
+                                        {band.name}
+                                    </a>
+                                </div>
+                                <div>
+                                    {band.genre && 
+                                        <h3 className="favBandGenre">
+                                            Genre: {band.genre}
+                                        </h3>
+                                    }
+                                    {band.img &&
+                                        <img className="favBandImage" src={`${band.img}`} alt='band' />
+                                    }
+                                </div>
+                                <BandEditForm band={band}/>
+                            </div>
                         </div>
-                        <BandEditForm band={band}/>
                     </div>
                 )
             })}
